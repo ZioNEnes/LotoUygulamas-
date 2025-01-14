@@ -68,7 +68,7 @@
             lblDegerInput.AutoSize = true;
             lblDegerInput.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             lblDegerInput.ForeColor = Color.Teal;
-            lblDegerInput.Location = new Point(221, 115);
+            lblDegerInput.Location = new Point(230, 115);
             lblDegerInput.Name = "lblDegerInput";
             lblDegerInput.Size = new Size(396, 32);
             lblDegerInput.TabIndex = 30;
@@ -90,7 +90,7 @@
             txtInput.BackColor = Color.FromArgb(245, 245, 245);
             txtInput.Font = new Font("Segoe UI", 12F);
             txtInput.ForeColor = Color.Black;
-            txtInput.Location = new Point(307, 156);
+            txtInput.Location = new Point(316, 156);
             txtInput.Name = "txtInput";
             txtInput.Size = new Size(100, 34);
             txtInput.TabIndex = 16;
@@ -133,7 +133,7 @@
             btnInput.FlatStyle = FlatStyle.Flat;
             btnInput.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnInput.ForeColor = Color.White;
-            btnInput.Location = new Point(221, 150);
+            btnInput.Location = new Point(230, 150);
             btnInput.Name = "btnInput";
             btnInput.Size = new Size(80, 40);
             btnInput.TabIndex = 0;
@@ -168,7 +168,7 @@
             listBoxEkleme.ForeColor = Color.Black;
             listBoxEkleme.FormattingEnabled = true;
             listBoxEkleme.ItemHeight = 23;
-            listBoxEkleme.Location = new Point(423, 156);
+            listBoxEkleme.Location = new Point(440, 156);
             listBoxEkleme.Name = "listBoxEkleme";
             listBoxEkleme.Size = new Size(51, 232);
             listBoxEkleme.TabIndex = 26;
@@ -176,7 +176,7 @@
             // UygulumaCalismaKodları
             // 
             BackColor = Color.FromArgb(220, 230, 241);
-            ClientSize = new Size(682, 453);
+            ClientSize = new Size(650, 450);
             Controls.Add(btnClose);
             Controls.Add(btnInput);
             Controls.Add(listBoxEkleme);
@@ -192,7 +192,7 @@
             MaximizeBox = false;
             Name = "UygulumaCalismaKodları";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "SAYİSAL LOTO";
+            Text = "SAYISAL LOTO";
             ((System.ComponentModel.ISupportInitialize)progressBar).EndInit();
             ResumeLayout(false);
             PerformLayout();

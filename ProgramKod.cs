@@ -11,13 +11,12 @@ using System.Windows.Forms;
 namespace UygulamaDenemesi
 {
     // DÝZÝLERÝ KARÞILAÞTIRIP DURUMA GÖRE NE YAPILMASI GEREKTÝÐÝ ÝLE ÝLGÝLENÝLECEK
-    // DÝZÝNÝN BÜYÜKLÜÐÜ ÝLE ÝLGÝLÝ PROBLEM DÜZELTÝLECEK-
     // TASARIMSAL ÝYÝLEÞTÝRMELER YAPILACAK:
     // (OYUNDAN ÝSTEDÝÐÝMÝZDE ÇIKABÝLMELÝYÝZ(Close Fonksiyonu sadece oldugu formu kapatýyo Application.Exit) )
-    //(DÝZÝLERDEKÝ SAYILAR AYNI OLURSA ONA GÖRE SAYININ RENGÝ DEÐÝÞEBÝLÝR)
     // otomatik eklemeyi çalýþtýrmadan önce kaç saniyede bir oluþturmak istediðini soracaðým
-    // Baþlatmadan önce listesini kontrol etmesini devam edip etmek istemediðini soracaðým
+    // Baþlatmadan önce listesini kontrol etmesini,devam edip etmek istemediðini soracaðým
     // MENU TASARIMINA KURALLAR BÖLÜMÜ EKLENÝLECEK
+    // DAHA FARKLI OLARAK RASTGELE ELEMANLI LOT KARTLARI OLUÞTURUCAM O KARTLA DEVAM EDÝLECEK:
     public partial class UygulumaCalismaKodlarý : Form
     {
         void VisibilityForStart(bool f) // BAÞLANGIÇTA GÖZÜKMEMESÝ GEREKENLER; 
@@ -78,7 +77,7 @@ namespace UygulamaDenemesi
                 }
             }
         }
-        void btnInputVisibility() // 10 Sayý Girildiði zaman Visibility Durumu
+        void btnInputVisibility() // 10 tane sayý girildiði zaman Visibility Durumu:
         {
             btnInput.Visible = false;
             txtInput.Visible = false;
@@ -112,8 +111,8 @@ namespace UygulamaDenemesi
                 MessageBox.Show("Lütfen 0 ile 9 arasýnda bir tam sayý giriniz.HARF GÝRÝLMEMELÝ!!");
                 return;// Kodun Devam etmesi istenilmiyor
             }
-            DiziInputListbox[SayacInput] = Deger;
-            SayacInput++;
+            DiziInputListbox[SayacInput] = Deger; // Diziye Girdigimiz Degeri ekliyoruz
+            SayacInput++; // Dizinin Ýndeks Deðeri
             txtInput.Clear(); // txt Boþaltýldý
             listBoxEkleme.Items.Add(SayacInput + "-" + Deger);  // listboxa Girdðimiz deðerler eklendi
             if (SayacInput == 10) //  10'adet sayý girilince Gözüküp gözükmemesi gerekenler.
@@ -123,8 +122,8 @@ namespace UygulamaDenemesi
         }
         // 5 Saniyede bir Kontrol-Listboxa Eleman Ekliyoruz:
         int[] DiziKontrolListbox = new int[MaxDiziDegeri]; // (Kontrol Lisbox)
-        int SayacReelTime = 0;
-        int SayacReelTimeBarValue = 0;
+        int SayacReelTime = 0; // Gerçek Hayatta Geçen Süreyi tutan sayaç
+        int SayacReelTimeBarValue = 0; 
         private void ReelTime_Tick(object sender, EventArgs e)
         {
             if (SayacReelTime == 5) // Sayac 5 e Ulaþtýðýnda
@@ -139,11 +138,7 @@ namespace UygulamaDenemesi
             }
             SayacReelTime++;
         }
-        private void btnOyunuKapatForm_Click(object sender, EventArgs e)
-        {
-            Application.Exit(); // Uygulamayý direkt kapat
-        }
-        int CheckSystem() // Dizileri karþýlaþtýrýp eþleþen elemanýnýn sayýsýnýný döndürür
+        int CheckSystem() // Dizileri karþýlaþtýrýp eþleþen sayýsýnýný döndürür
         {
             int CheckSayac = 0;
             for (int i = 0; i < MaxDiziDegeri; i++)
@@ -172,6 +167,10 @@ namespace UygulamaDenemesi
                     MessageBox.Show("Bu þansla sakýn bilet almayýn!");
                     break;
             }
+        }
+        private void btnOyunuKapatForm_Click(object sender, EventArgs e)
+        {
+            Application.Exit(); // Uygulamayý direkt kapat
         }
     }
 }
