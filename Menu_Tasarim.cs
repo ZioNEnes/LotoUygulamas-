@@ -17,7 +17,7 @@ namespace LotoUygulaması
         public Menu_Tasarim()
         {
             InitializeComponent();
-            //
+          
         }
         private void btnOyunuBaslat_Click(object sender, EventArgs e)
         {
@@ -25,7 +25,7 @@ namespace LotoUygulaması
             UygulumaCalismaKodları FormGecis = new UygulumaCalismaKodları();
             FormGecis.Show();
             this.Hide();
-            //
+      
         }
         private void btnOyunuKapat_Click(object sender, EventArgs e)
         {
