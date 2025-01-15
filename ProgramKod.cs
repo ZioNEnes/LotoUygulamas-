@@ -8,6 +8,7 @@ using System.Drawing.Design;
 using LotoUygulamasý;
 using System.Configuration;
 using System.Windows.Forms;
+using System.Security.Cryptography.X509Certificates;
 namespace UygulamaDenemesi
 {
     // DÝZÝLERÝ KARÞILAÞTIRIP DURUMA GÖRE NE YAPILMASI GEREKTÝÐÝ ÝLE ÝLGÝLENÝLECEK
@@ -28,32 +29,32 @@ namespace UygulamaDenemesi
             progressBar.Visible = f;
             listBox1.Visible = f;
         }
-            public UygulumaCalismaKodlarý()
+        public UygulumaCalismaKodlarý()
         {
             InitializeComponent();
             VisibilityForStart(false);
             string[] Sayilar = new string[] { "0", "1", "2", " 3", " 4", " 5", " 6", " 7", " 8", " 9" };
             lblSayilar.Text = String.Join("    ", Sayilar); // DÝZÝYÝ BÝRLEÞTÝRÝP LABEL EKLEDÝK
-            
+
         }
         private const int MaxDiziDegeri = 10; // MAKSÝMUM DÝZÝ DEÐERÝ
         int SayacUretilenSayi = 0;
         private void btnUretimiBaslat_Click(object sender, EventArgs e)
         {
-            btnUretimiBaslat.Visible=false;
+            btnUretimiBaslat.Visible = false;
 
             if (SayacUretilenSayi == 9)
             {
                 btnUretimiBaslat.Text = "Sonucu Görüntüle";
             }
-            if (SayacUretilenSayi == 10) 
+            if (SayacUretilenSayi == 10)
             {
                 PrintAfterCheck();
                 // TEKRAR OYNA BUTONU GÖZÜKECEK
                 return;
 
             }
-            Timer1.Start(); // TÝMER1 baþlatýldý
+            BarHýz.Start(); // TÝMER1 baþlatýldý
             ReelTime.Start();// ReelTime Baþlatýldý
             SayacUretilenSayi++;
         }
@@ -90,7 +91,7 @@ namespace UygulamaDenemesi
             listBox1.Visible = true;
         }
         int SayacInput = 0;
-        int[] DiziInputListbox = new int[MaxDiziDegeri]; 
+        int[] DiziInputListbox = new int[MaxDiziDegeri];
         private void btnInput_Click(object sender, EventArgs e)
         {
             int Deger = 0;
@@ -123,7 +124,7 @@ namespace UygulamaDenemesi
         // 5 Saniyede bir Kontrol-Listboxa Eleman Ekliyoruz:
         int[] DiziKontrolListbox = new int[MaxDiziDegeri]; // (Kontrol Lisbox)
         int SayacReelTime = 0; // Gerçek Hayatta Geçen Süreyi tutan sayaç
-        int SayacReelTimeBarValue = 0; 
+        int SayacReelTimeBarValue = 0;
         private void ReelTime_Tick(object sender, EventArgs e)
         {
             if (SayacReelTime == 5) // Sayac 5 e Ulaþtýðýnda
@@ -132,7 +133,7 @@ namespace UygulamaDenemesi
                 SayacReelTime = 0;
                 SayacReelTimeBarValue++;
                 listBox1.Items.Add(SayacReelTimeBarValue + "-" + progressBar.Value);
-                Timer1.Stop();
+                BarHýz.Stop();
                 ReelTime.Stop();
                 btnUretimiBaslat.Visible = true;
             }
@@ -171,6 +172,59 @@ namespace UygulamaDenemesi
         private void btnOyunuKapatForm_Click(object sender, EventArgs e)
         {
             Application.Exit(); // Uygulamayý direkt kapat
+        }
+
+        Random RandomSayýUretici=new Random();
+      public void LotoKartlarý()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                int kart1 = RandomSayýUretici.Next(10);
+                int kart2 = RandomSayýUretici.Next(10);
+                int kart3 = RandomSayýUretici.Next(10);
+                int kart4 = RandomSayýUretici.Next(10);
+                int kart5 = RandomSayýUretici.Next(10);
+                listKart1.Items.Add((i + 1) + "-" + kart1);
+                listKart2.Items.Add((i + 1) + "-" + kart2);
+                listKart3.Items.Add((i + 1) + "-" + kart3);
+                listKart4.Items.Add((i + 1) + "-" + kart4);
+                listKart5.Items.Add((i + 1) + "-" + kart5);
+            }
+        }
+        public void KartlarýTemizle()
+            {
+                listKart1.Items.Clear();
+                listKart2.Items.Clear();
+                listKart3.Items.Clear();
+                listKart4.Items.Clear();
+                listKart5.Items.Clear();
+            }
+        void btnKartVisible(bool bDeger)
+        {
+            btnKart1.Visible = bDeger;
+            btnKart2.Visible = bDeger;
+            btnKart3.Visible = bDeger;
+            btnKart4.Visible = bDeger;
+            btnKart5.Visible = bDeger;
+
+        } 
+        int KartDegisClickSayac = 0;
+private void btnKartDegis_Click(object sender, EventArgs e)
+        {
+            if (KartDegisClickSayac == 0)
+            {
+                LotoKartlarý();
+                btnKartVisible(true);
+                KartDegisClickSayac++;
+                return;
+            }
+            if (KartDegisClickSayac == 1)
+            {
+                KartlarýTemizle();
+                btnKartVisible(false);
+                KartDegisClickSayac--;
+                return;
+            }
         }
     }
 }
