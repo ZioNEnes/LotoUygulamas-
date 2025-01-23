@@ -194,6 +194,7 @@
             btnKart1.TabIndex = 32;
             btnKart1.Text = "1";
             btnKart1.UseVisualStyleBackColor = false;
+            btnKart1.Click += btnKart1_Click;
             // 
             // btnKart2
             // 
@@ -205,6 +206,7 @@
             btnKart2.TabIndex = 33;
             btnKart2.Text = "2";
             btnKart2.UseVisualStyleBackColor = false;
+            btnKart2.Click += btnKart2_Click;
             // 
             // btnKart3
             // 
@@ -216,6 +218,7 @@
             btnKart3.TabIndex = 34;
             btnKart3.Text = "3";
             btnKart3.UseVisualStyleBackColor = false;
+            btnKart3.Click += btnKart3_Click;
             // 
             // btnKartDegis
             // 
@@ -237,6 +240,7 @@
             btnKart5.TabIndex = 36;
             btnKart5.Text = "5";
             btnKart5.UseVisualStyleBackColor = false;
+            btnKart5.Click += btnKart5_Click;
             // 
             // listKart1
             // 
@@ -300,6 +304,7 @@
             btnKart4.TabIndex = 40;
             btnKart4.Text = "4";
             btnKart4.UseVisualStyleBackColor = false;
+            btnKart4.Click += btnKart4_Click;
             // 
             // listKart5
             // 
@@ -317,7 +322,7 @@
             // UygulumaCalismaKodları
             // 
             BackColor = Color.FromArgb(220, 230, 241);
-            ClientSize = new Size(870, 450);
+            ClientSize = new Size(822, 450);
             Controls.Add(listKart5);
             Controls.Add(listKart4);
             Controls.Add(btnKart4);
@@ -368,11 +373,11 @@
         private Button btnKart3;
         private Button btnKartDegis;
         private Button btnKart5;
-        private ListBox listKart1;
-        private ListBox listKart2;
-        private ListBox listKart3;
-        private ListBox listKart4;
+        public ListBox listKart1;
+        public ListBox listKart2;
+        public ListBox listKart3;
+        public ListBox listKart4;
         private Button btnKart4;
-        private ListBox listKart5;
+        public ListBox listKart5;
     }
 }

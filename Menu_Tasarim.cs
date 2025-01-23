@@ -24,7 +24,8 @@ namespace LotoUygulaması
             // Form Geçiş
             UygulumaCalismaKodları FormGecis = new UygulumaCalismaKodları();
             FormGecis.Show();
-            this.Hide(); 
+            this.Hide();
+     
       
         }
         private void btnOyunuKapat_Click(object sender, EventArgs e)
