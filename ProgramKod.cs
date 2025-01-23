@@ -30,16 +30,16 @@ namespace UygulamaDenemesi
             progressBar.Visible = f;
             listBox1.Visible = f;
         }
-        Button[] btnKartLar()// Kartlarýn Buttonlarýný oluþturduk 
-        {
-            Button[] btnKartlar = { btnKart1, btnKart2, btnKart3, btnKart4, btnKart5 };
-            return btnKartlar;
-        }
         ListBox[]ListBoxKartlar() // Kartlarý Oluþturduk
         {
         ListBox [] ListKartlar = { listKart1, listKart2, listKart3, listKart4, listKart5 };
         return ListKartlar;
-        
+
+        }
+        Button[] btnKartLar()// Kartlarýn Buttonlarýný oluþturduk 
+        {
+            Button[] btnKartlar = { btnKart1, btnKart2, btnKart3, btnKart4, btnKart5 };
+            return btnKartlar;
         }
         public UygulumaCalismaKodlarý()
         {
@@ -108,7 +108,6 @@ namespace UygulamaDenemesi
             listBox1.Visible = true;
         }
         int SayacInput = 0;
-
         private void btnInput_Click(object sender, EventArgs e)
         {
             int Deger = 0;
@@ -139,7 +138,7 @@ namespace UygulamaDenemesi
             }
         }
         // 5 Saniyede bir Kontrol-Listboxa Eleman Ekliyoruz:
- 
+
         int SayacReelTime = 0; // Gerçek Hayatta Geçen Süreyi tutan sayaç
         int SayacReelTimeBarValue = 0;
         private void ReelTime_Tick(object sender, EventArgs e)
@@ -172,9 +171,6 @@ namespace UygulamaDenemesi
         {
             switch (CheckSystem())
             {
-                case 1:
-                    MessageBox.Show("Bu þansla sakýn bilet almayýn!");
-                    break;
                 case 2:
                     MessageBox.Show("Lotodan yüzde 5  kazandýnýz TEBRÝKLER");
                     break;
@@ -235,14 +231,13 @@ namespace UygulamaDenemesi
         }
         void listBoxKartVisible(ListBox[] Listkartlar,bool bDeger,int sayi) // Kartlarýn Gözükme Durumu Kontrolu
         {
-            
-            for(int i = 0;i<Listkartlar.Length;i++) // Kartlarý Gözükmemesini Saðlama
+            for(int i = 0;i<Listkartlar.Length;i++) // Tüm Kartlarý Geziyoruz
             {
                 if (sayi == i) // Gözükmesini istediðimiz kartýn Durumunu Deðiþtirmiyoruz 
                 {
                     continue;
                 }
-                Listkartlar[i].Visible = bDeger;
+                Listkartlar[i].Visible = bDeger; // Kartlarýn Gözükmemesini Saðlama
             }
         }
         // KARTLARIN ÝÇÝNDEKÝ DEÐERLERÝ DEÐÝÞTÝRÝYORUZ
