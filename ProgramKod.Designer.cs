@@ -226,7 +226,7 @@
             btnKartDegis.Name = "btnKartDegis";
             btnKartDegis.Size = new Size(94, 54);
             btnKartDegis.TabIndex = 35;
-            btnKartDegis.Text = "Kartları Degiş";
+            btnKartDegis.Text = "Sayıları Oluştur";
             btnKartDegis.UseVisualStyleBackColor = true;
             btnKartDegis.Click += btnKartDegis_Click;
             // 

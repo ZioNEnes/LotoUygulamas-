@@ -214,13 +214,12 @@ namespace UygulamaDenemesi
                 listKart5.Items.Add((i + 1) + "-" + kart5);
             }
         }
-        public void KartlarýTemizle() // KARTLARIN TEMÝZLENMESÝ
+        public void KartlarýTemizle(ListBox[] KartlarýTemizle) // KARTLARIN TEMÝZLENMESÝ
         {
-            listKart1.Items.Clear();
-            listKart2.Items.Clear();
-            listKart3.Items.Clear();
-            listKart4.Items.Clear();
-            listKart5.Items.Clear();
+        for(int i = 0; i < KartlarýTemizle.Length; i++)
+            {
+                KartlarýTemizle[i].Items.Clear();
+            }
         }
         void btnKartVisible(bool bDeger)
         {
@@ -256,7 +255,7 @@ namespace UygulamaDenemesi
             }
             if (KartDegisClickSayac == 1)
             {
-                KartlarýTemizle();
+                KartlarýTemizle(ListBoxKartlar());
                 btnKartVisible(false);
                 KartDegisClickSayac--;
                 return;
