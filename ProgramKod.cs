@@ -30,7 +30,12 @@ namespace UygulamaDenemesi
             progressBar.Visible = f;
             listBox1.Visible = f;
         }
-       ListBox[]ListBoxKartlar() // Kartlarý Oluþturduk
+        Button[] btnKartLar()// Kartlarýn Buttonlarýný oluþturduk 
+        {
+            Button[] btnKartlar = { btnKart1, btnKart2, btnKart3, btnKart4, btnKart5 };
+            return btnKartlar;
+        }
+        ListBox[]ListBoxKartlar() // Kartlarý Oluþturduk
         {
         ListBox [] ListKartlar = { listKart1, listKart2, listKart3, listKart4, listKart5 };
         return ListKartlar;
@@ -47,7 +52,7 @@ namespace UygulamaDenemesi
         }
         private const int MaxDiziDegeri = 10; // MAKSÝMUM DÝZÝ DEÐERÝ
         // GEREKLÝ DÝZÝLER OLUÞTURULDU:
-       // ListBoxdaki Kartlar için Dizi oluþturuldu.
+        
         public int[] DiziInputListbox = new int[MaxDiziDegeri];// Deðer Girdiðimiz Sayýlarý Tutan Dizi
         int[] DiziKontrolListbox = new int[MaxDiziDegeri];// Rastgele Sayýlardan oluþan Dizi
         int SayacUretilenSayi = 0;
@@ -103,7 +108,7 @@ namespace UygulamaDenemesi
             listBox1.Visible = true;
         }
         int SayacInput = 0;
-        
+
         private void btnInput_Click(object sender, EventArgs e)
         {
             int Deger = 0;
@@ -221,14 +226,12 @@ namespace UygulamaDenemesi
                 KartlarýTemizle[i].Items.Clear();
             }
         }
-        void btnKartVisible(bool bDeger)
+        void btnKartVisible(Button[] btnkart,bool bDeger)
         {
-            btnKart1.Visible = bDeger;
-            btnKart2.Visible = bDeger;
-            btnKart3.Visible = bDeger;
-            btnKart4.Visible = bDeger;
-            btnKart5.Visible = bDeger;
-        
+            for( int i = 0;i < btnkart.Length; i++)
+            {
+                btnkart[i].Visible = bDeger;
+            }
         }
         void listBoxKartVisible(ListBox[] Listkartlar,bool bDeger,int sayi) // Kartlarýn Gözükme Durumu Kontrolu
         {
@@ -249,23 +252,24 @@ namespace UygulamaDenemesi
             if (KartDegisClickSayac == 0)
             {
                 LotoKartlarýUretimi();
-                btnKartVisible(true);
+                btnKartVisible(btnKartLar(),true);
                 KartDegisClickSayac++;
                 return;
             }
             if (KartDegisClickSayac == 1)
             {
                 KartlarýTemizle(ListBoxKartlar());
-                btnKartVisible(false);
+                btnKartVisible(btnKartLar(), false);
                 KartDegisClickSayac--;
                 return;
             }
         }
+        // KARTLARIN BUTTONLARINA BASILDIÐINDA OLMASINI ÝSTEDÝÐÝMÝZ KODLAR:
         private void btnKart1_Click(object sender, EventArgs e)
         {
             btnKart1.Enabled = true;
             ChooseBtn();
-            btnKartVisible(false);
+            btnKartVisible(btnKartLar(),false);
             listBoxKartVisible(ListBoxKartlar(),false,0);
         }
         private void btnKart2_Click(object sender, EventArgs e)
@@ -273,28 +277,28 @@ namespace UygulamaDenemesi
             btnKart1.Enabled=false;
             btnKart2.Enabled = true;
             ChooseBtn();
-            btnKartVisible(false);
+            btnKartVisible(btnKartLar(),false);
             listBoxKartVisible(ListBoxKartlar(), false, 1);
         }
         private void btnKart3_Click(object sender, EventArgs e)
         {
             btnKart3.Enabled = true;
             ChooseBtn();
-            btnKartVisible(false);
+            btnKartVisible(btnKartLar(),false);
             listBoxKartVisible(ListBoxKartlar(), false, 2);
         }
         private void btnKart4_Click(object sender, EventArgs e)
         {
             btnKart4.Enabled = true;
             ChooseBtn();
-            btnKartVisible(false);
+            btnKartVisible(btnKartLar(),false);
             listBoxKartVisible(ListBoxKartlar(), false, 3);
         }
         private void btnKart5_Click(object sender, EventArgs e)
         {
             btnKart5.Enabled = true;
             ChooseBtn();
-            btnKartVisible(false);
+            btnKartVisible(btnKartLar(),false);
             listBoxKartVisible(ListBoxKartlar(), false, 4);
         }
     }
