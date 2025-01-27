@@ -29,52 +29,54 @@ namespace LotoUygulaması
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            button2 = new Button();
-            label1 = new Label();
+            btnPlay = new Button();
+            btnExit = new Button();
+            lblTitle = new Label();
             SuspendLayout();
             // 
-            // button1
+            // btnPlay
             // 
-            button1.BackColor = Color.FromArgb(76, 175, 80);
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(75, 80);
-            button1.Name = "button1";
-            button1.Size = new Size(250, 60);
-            button1.TabIndex = 1;
-            button1.Text = "OYUNA BAŞLA";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += btnOyunuBaslat_Click;
+            btnPlay.BackColor = Color.FromArgb(50, 205, 50);
+            btnPlay.Cursor = Cursors.Hand;
+            btnPlay.FlatAppearance.BorderSize = 0;
+            btnPlay.FlatStyle = FlatStyle.Flat;
+            btnPlay.Font = new Font("Arial", 12F, FontStyle.Bold);
+            btnPlay.ForeColor = Color.White;
+            btnPlay.Location = new Point(117, 80);
+            btnPlay.Name = "btnPlay";
+            btnPlay.Size = new Size(200, 50);
+            btnPlay.TabIndex = 1;
+            btnPlay.Text = "OYUNA BAŞLA";
+            btnPlay.UseVisualStyleBackColor = false;
+            btnPlay.Click += btnOyunuBaslat_Click;
             // 
-            // button2
+            // btnExit
             // 
-            button2.BackColor = Color.FromArgb(244, 67, 54);
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(75, 150);
-            button2.Name = "button2";
-            button2.Size = new Size(250, 60);
-            button2.TabIndex = 0;
-            button2.Text = "OYUNU KAPAT";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += btnOyunuKapat_Click;
+            btnExit.BackColor = Color.FromArgb(255, 69, 58);
+            btnExit.Cursor = Cursors.Hand;
+            btnExit.FlatAppearance.BorderSize = 0;
+            btnExit.FlatStyle = FlatStyle.Flat;
+            btnExit.Font = new Font("Arial", 12F, FontStyle.Bold);
+            btnExit.ForeColor = Color.White;
+            btnExit.Location = new Point(117, 150);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(200, 50);
+            btnExit.TabIndex = 1;
+            btnExit.Text = "OYUNU KAPAT";
+            btnExit.UseVisualStyleBackColor = false;
+            btnExit.Click += btnOyunuKapat_Click;
             // 
-            // label1
+            // lblTitle
             // 
-            label1.Dock = DockStyle.Top;
-            label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            label1.ForeColor = Color.DarkBlue;
-            label1.Location = new Point(0, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(450, 77);
-            label1.TabIndex = 0;
-            label1.Text = "SAYISAL LOTO OYUNU";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
+            lblTitle.Dock = DockStyle.Top;
+            lblTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.DarkBlue;
+            lblTitle.Location = new Point(0, 0);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(450, 77);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "SAYISAL LOTO OYUNU";
+            lblTitle.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Menu_Tasarim
             // 
@@ -82,18 +84,19 @@ namespace LotoUygulaması
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Ivory;
             ClientSize = new Size(450, 350);
-            Controls.Add(label1);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(lblTitle);
+            Controls.Add(btnExit);
+            Controls.Add(btnPlay);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Menu_Tasarim";
             Text = "AnaMenu";
+            this.MaximizeBox = false;
             ResumeLayout(false);
         }
 
         #endregion
-        private Button button1;
-        private Button button2;
-        private Label label1;
+        private Button btnPlay;
+        private Button btnExit;
+        private Label lblTitle;
     }
 }

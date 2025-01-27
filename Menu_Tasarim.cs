@@ -25,8 +25,7 @@ namespace LotoUygulaması
             UygulumaCalismaKodları FormGecis = new UygulumaCalismaKodları();
             FormGecis.Show();
             this.Hide();
-     
-      
+           // UygulumaCalismaKodları.instance.btnInputVisibilityORClickBtnKart(); Başka Formdaki fonksiyona erişdim 
         }
         private void btnOyunuKapat_Click(object sender, EventArgs e)
         {
