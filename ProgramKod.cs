@@ -9,6 +9,8 @@ using LotoUygulamasý;
 using System.Configuration;
 using System.Windows.Forms;
 using System.Security.Cryptography.X509Certificates;
+using static System.Windows.Forms.DataFormats;
+using NAudio.CoreAudioApi;
 namespace UygulamaDenemesi
 {
     // LÝSTBOXLARI BÝR DÝZÝ HALÝNE GETÝRÝP ÝÞLEM YAP.
@@ -21,8 +23,10 @@ namespace UygulamaDenemesi
     // DAHA FARKLI OLARAK RASTGELE ELEMANLI LOT KARTLARI OLUÞTURUCAM O KARTLA DEVAM EDÝLECEK:
     public partial class UygulumaCalismaKodlarý : Form
     {
+        // public static UygulumaCalismaKodlarý instance; // Formun Global örneði
         void VisibilityForStart(bool f) // BAÞLANGIÇTA GÖZÜKMEMESÝ GEREKENLER; 
         {
+            btnKartVisible(btnKartLar(),f);
             btnUretimiBaslat.Visible = f;
             lblRandom.Visible = f;
             lblSayilar.Visible = f;
@@ -30,7 +34,7 @@ namespace UygulamaDenemesi
             progressBar.Visible = f;
             listBox1.Visible = f;
         }
-        ListBox[]ListBoxKartlar() // Kartlarý Oluþturduk
+        ListBox[] ListBoxKartlar() // Kartlarý Oluþturduk
         {
         ListBox [] ListKartlar = { listKart1, listKart2, listKart3, listKart4, listKart5 };
         return ListKartlar;
@@ -44,7 +48,7 @@ namespace UygulamaDenemesi
         public UygulumaCalismaKodlarý()
         {
             InitializeComponent();
-           
+           // instance = this;
             VisibilityForStart(false);
             string[] Sayilar = new string[] { "0", "1", "2", " 3", " 4", " 5", " 6", " 7", " 8", " 9" };
             lblSayilar.Text = String.Join("    ", Sayilar); // DÝZÝYÝ BÝRLEÞTÝRÝP LABEL EKLEDÝK
@@ -58,6 +62,7 @@ namespace UygulamaDenemesi
         int SayacUretilenSayi = 0;
         private void btnUretimiBaslat_Click(object sender, EventArgs e)
         {
+            
             btnUretimiBaslat.Visible = false;
 
             if (SayacUretilenSayi == 9)
@@ -95,7 +100,7 @@ namespace UygulamaDenemesi
                 }
             }
         }
-        void btnInputVisibility() // 10 tane sayý girildiði zaman Visibility Durumu:
+        public void btnInputVisibilityORClickBtnKart() // 10 tane sayý girildiði ya da Kart seçildiði zaman Visibility Durumu:
         {
             btnInput.Visible = false;
             txtInput.Visible = false;
@@ -134,7 +139,7 @@ namespace UygulamaDenemesi
             listBoxEkleme.Items.Add(SayacInput + "-" + Deger);  // listboxa Girdðimiz deðerler eklendi
             if (SayacInput == 10) //  10'adet sayý girilince Gözüküp gözükmemesi gerekenler.
             {
-                btnInputVisibility();
+                btnInputVisibilityORClickBtnKart();
             }
         }
         // 5 Saniyede bir Kontrol-Listboxa Eleman Ekliyoruz:
@@ -187,7 +192,7 @@ namespace UygulamaDenemesi
             Application.Exit(); // Uygulamayý direkt kapat
         }
 
-        Random RandomSayýUretici = new Random();
+
         void ChooseBtn()
         {
             if (btnKart1.Enabled == true)
@@ -199,20 +204,19 @@ namespace UygulamaDenemesi
                 MessageBox.Show("Button 2 e basýldý");
             }
         }
-        public void LotoKartlarýUretimi() // KART URETÝMÝ
+        Random RandomSayýUretici = new Random();
+        public void LotoKartlarýUretimi(ListBox[] Kart) // Rastgele Sayýlarda KART URETÝMÝ
         {
-            for (int i = 0; i < 10; i++)
+            // BURADA AMAÇ KARTLARA RASTGELE SAYI URETÝP O RASTGELE SAYIlARI
+            // LÝSTBOXA EKLEMEK
+            int[] kartRastgeleSayi = new int[10];
+            for (int j = 0; j < 5; j++)
             {
-                int kart1 = RandomSayýUretici.Next(10);
-                int kart2 = RandomSayýUretici.Next(10);
-                int kart3 = RandomSayýUretici.Next(10);
-                int kart4 = RandomSayýUretici.Next(10);
-                int kart5 = RandomSayýUretici.Next(10);
-                listKart1.Items.Add((i + 1) + "-" + kart1);
-                listKart2.Items.Add((i + 1) + "-" + kart2);
-                listKart3.Items.Add((i + 1) + "-" + kart3);
-                listKart4.Items.Add((i + 1) + "-" + kart4);
-                listKart5.Items.Add((i + 1) + "-" + kart5);
+                for (int i = 0; i < 10; i++)
+                {
+                    kartRastgeleSayi[i] = RandomSayýUretici.Next(10);
+                    Kart[j].Items.Add((i + 1) + "-" + kartRastgeleSayi[i]);
+                }
             }
         }
         public void KartlarýTemizle(ListBox[] KartlarýTemizle) // KARTLARIN TEMÝZLENMESÝ
@@ -222,7 +226,7 @@ namespace UygulamaDenemesi
                 KartlarýTemizle[i].Items.Clear();
             }
         }
-        void btnKartVisible(Button[] btnkart,bool bDeger)
+        void btnKartVisible(Button[] btnkart,bool bDeger) // Btn Kartlarýn Gözük
         {
             for( int i = 0;i < btnkart.Length; i++)
             {
@@ -246,13 +250,15 @@ namespace UygulamaDenemesi
         {
             if (KartDegisClickSayac == 0)
             {
-                LotoKartlarýUretimi();
+                btnKartDegis.Text = "Temizle";
+                LotoKartlarýUretimi(ListBoxKartlar());
                 btnKartVisible(btnKartLar(),true);
                 KartDegisClickSayac++;
                 return;
             }
             if (KartDegisClickSayac == 1)
             {
+                btnKartDegis.Text = "Sayilarý Oluþtur";
                 KartlarýTemizle(ListBoxKartlar());
                 btnKartVisible(btnKartLar(), false);
                 KartDegisClickSayac--;
@@ -263,38 +269,49 @@ namespace UygulamaDenemesi
         private void btnKart1_Click(object sender, EventArgs e)
         {
             btnKart1.Enabled = true;
+            btnKartDegis.Visible=false;
             ChooseBtn();
             btnKartVisible(btnKartLar(),false);
             listBoxKartVisible(ListBoxKartlar(),false,0);
+            btnInputVisibilityORClickBtnKart();
+
         }
         private void btnKart2_Click(object sender, EventArgs e)
         {
             btnKart1.Enabled=false;
             btnKart2.Enabled = true;
+            btnKartDegis.Visible = false;
             ChooseBtn();
             btnKartVisible(btnKartLar(),false);
             listBoxKartVisible(ListBoxKartlar(), false, 1);
+            btnInputVisibilityORClickBtnKart();
         }
         private void btnKart3_Click(object sender, EventArgs e)
         {
             btnKart3.Enabled = true;
+            btnKartDegis.Visible = false;
             ChooseBtn();
             btnKartVisible(btnKartLar(),false);
             listBoxKartVisible(ListBoxKartlar(), false, 2);
+            btnInputVisibilityORClickBtnKart();
         }
         private void btnKart4_Click(object sender, EventArgs e)
         {
             btnKart4.Enabled = true;
+            btnKartDegis.Visible = false;
             ChooseBtn();
             btnKartVisible(btnKartLar(),false);
             listBoxKartVisible(ListBoxKartlar(), false, 3);
+            btnInputVisibilityORClickBtnKart();
         }
         private void btnKart5_Click(object sender, EventArgs e)
         {
             btnKart5.Enabled = true;
+            btnKartDegis.Visible = false;
             ChooseBtn();
             btnKartVisible(btnKartLar(),false);
             listBoxKartVisible(ListBoxKartlar(), false, 4);
+            btnInputVisibilityORClickBtnKart();
         }
     }
 }

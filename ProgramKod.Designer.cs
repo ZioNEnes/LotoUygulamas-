@@ -77,11 +77,11 @@
             // lblDegerInput
             // 
             lblDegerInput.AutoSize = true;
-            lblDegerInput.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            lblDegerInput.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Bold, GraphicsUnit.Point, 162);
             lblDegerInput.ForeColor = Color.Teal;
-            lblDegerInput.Location = new Point(337, 9);
+            lblDegerInput.Location = new Point(386, 6);
             lblDegerInput.Name = "lblDegerInput";
-            lblDegerInput.Size = new Size(396, 32);
+            lblDegerInput.Size = new Size(367, 31);
             lblDegerInput.TabIndex = 30;
             lblDegerInput.Text = "0-9 ARASI 10 TANE SAYI GİRİNİZ:";
             // 
@@ -89,7 +89,7 @@
             // 
             progressBar.AutoSize = false;
             progressBar.BackColor = SystemColors.ActiveCaption;
-            progressBar.Location = new Point(12, 47);
+            progressBar.Location = new Point(12, 37);
             progressBar.Maximum = 9;
             progressBar.Name = "progressBar";
             progressBar.Size = new Size(273, 33);
@@ -101,9 +101,9 @@
             txtInput.BackColor = Color.FromArgb(245, 245, 245);
             txtInput.Font = new Font("Segoe UI", 12F);
             txtInput.ForeColor = Color.Black;
-            txtInput.Location = new Point(423, 50);
+            txtInput.Location = new Point(537, 46);
             txtInput.Name = "txtInput";
-            txtInput.Size = new Size(100, 34);
+            txtInput.Size = new Size(58, 34);
             txtInput.TabIndex = 16;
             // 
             // listBox1
@@ -122,7 +122,7 @@
             // 
             lblRandom.AutoSize = true;
             lblRandom.Font = new Font("Verdana", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 162);
-            lblRandom.Location = new Point(12, 9);
+            lblRandom.Location = new Point(12, 12);
             lblRandom.Name = "lblRandom";
             lblRandom.Size = new Size(300, 22);
             lblRandom.TabIndex = 19;
@@ -131,7 +131,7 @@
             // lblSayilar
             // 
             lblSayilar.AutoSize = true;
-            lblSayilar.Location = new Point(23, 81);
+            lblSayilar.Location = new Point(22, 73);
             lblSayilar.Name = "lblSayilar";
             lblSayilar.Size = new Size(70, 20);
             lblSayilar.TabIndex = 24;
@@ -144,7 +144,7 @@
             btnInput.FlatStyle = FlatStyle.Flat;
             btnInput.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnInput.ForeColor = Color.White;
-            btnInput.Location = new Point(337, 44);
+            btnInput.Location = new Point(451, 40);
             btnInput.Name = "btnInput";
             btnInput.Size = new Size(80, 40);
             btnInput.TabIndex = 0;
@@ -179,7 +179,7 @@
             listBoxEkleme.ForeColor = Color.Black;
             listBoxEkleme.FormattingEnabled = true;
             listBoxEkleme.ItemHeight = 23;
-            listBoxEkleme.Location = new Point(739, 21);
+            listBoxEkleme.Location = new Point(759, 9);
             listBoxEkleme.Name = "listBoxEkleme";
             listBoxEkleme.Size = new Size(51, 232);
             listBoxEkleme.TabIndex = 26;
