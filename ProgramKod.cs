@@ -43,8 +43,10 @@ namespace UygulamaDenemesi
         Button[] btnKartLar()// Kartlarýn Buttonlarýný oluþturduk 
         {
             Button[] btnKartlar = { btnKart1, btnKart2, btnKart3, btnKart4, btnKart5 };
+            
             return btnKartlar;
         }
+
         public UygulumaCalismaKodlarý()
         {
             InitializeComponent();
@@ -58,11 +60,14 @@ namespace UygulamaDenemesi
         // GEREKLÝ DÝZÝLER OLUÞTURULDU:
         
         public int[] DiziInputListbox = new int[MaxDiziDegeri];// Deðer Girdiðimiz Sayýlarý Tutan Dizi
+        int[] kartRastgeleSayilar = new int[50]; // Bütün Rastgele Sayýlarý Tutan Dizi
         int[] DiziKontrolListbox = new int[MaxDiziDegeri];// Rastgele Sayýlardan oluþan Dizi
         int SayacUretilenSayi = 0;
+        int BaslangicDeger = 0;
+        int BitisDeger = 1;
         private void btnUretimiBaslat_Click(object sender, EventArgs e)
         {
-            
+
             btnUretimiBaslat.Visible = false;
 
             if (SayacUretilenSayi == 9)
@@ -71,7 +76,7 @@ namespace UygulamaDenemesi
             }
             if (SayacUretilenSayi == 10)
             {
-                PrintAfterCheck();
+                PrintAfterCheck(BaslangicDeger,BitisDeger);
                 // TEKRAR OYNA BUTONU GÖZÜKECEK
                 return;
 
@@ -144,8 +149,8 @@ namespace UygulamaDenemesi
         }
         // 5 Saniyede bir Kontrol-Listboxa Eleman Ekliyoruz:
 
-        int SayacReelTime = 0; // Gerçek Hayatta Geçen Süreyi tutan sayaç
-        int SayacReelTimeBarValue = 0;
+       private int SayacReelTime = 0; // Gerçek Hayatta Geçen Süreyi tutan sayaç
+       private int SayacReelTimeBarValue = 0;
         private void ReelTime_Tick(object sender, EventArgs e)
         {
             if (SayacReelTime == 5) // Sayac 5 e Ulaþtýðýnda
@@ -160,27 +165,32 @@ namespace UygulamaDenemesi
             }
             SayacReelTime++;
         }
-        int CheckSystem() // Dizileri karþýlaþtýrýp eþleþen sayýsýnýný döndürür
+
+        int CheckSystem(int Baslangic,int Bitis) // Dizileri karþýlaþtýrýp eþleþen sayýsýnýný döndürür
         {
             int CheckSayac = 0;
-            for (int i = 0; i < MaxDiziDegeri; i++)
+            int k = 0;
+            for (int i = Baslangic; i < Bitis; i++,k++)
             {
-                if (DiziInputListbox[i] == DiziKontrolListbox[i])
+                if (kartRastgeleSayilar[i] == DiziKontrolListbox[k])
                 {
                     CheckSayac += 1;
                 }
             }
             return CheckSayac;
         }
-        void PrintAfterCheck() // LOTODAN NE KADAR PARA KAZANDINIZ:
+        void PrintAfterCheck(int BaslangicAl,int BitisAl) // LOTODAN NE KADAR PARA KAZANDINIZ:
         {
-            switch (CheckSystem())
+            switch (CheckSystem(BaslangicAl,BitisAl))
             {
+                case 1:
+                    MessageBox.Show("Lotodan yüzde 10  kazandýnýz TEBRÝKLER");
+                    break;
                 case 2:
-                    MessageBox.Show("Lotodan yüzde 5  kazandýnýz TEBRÝKLER");
+                    MessageBox.Show("Lotodan yüzde 20  kazandýnýz TEBRÝKLER");
                     break;
                 case 3:
-                    MessageBox.Show("Lotodan yüzde 10  kazandýnýz TEBRÝKLER");
+                    MessageBox.Show("Lotodan yüzde 30  kazandýnýz TEBRÝKLER");
                     break;
                 default:
                     MessageBox.Show("Bu þansla sakýn bilet almayýn!");
@@ -191,13 +201,17 @@ namespace UygulamaDenemesi
         {
             Application.Exit(); // Uygulamayý direkt kapat
         }
-
-
+        
+        
         void ChooseBtn()
         {
             if (btnKart1.Enabled == true)
             {
                 MessageBox.Show("Button1 e basýldý");
+                for(int i = 0; i < 10; i++)
+                {
+
+                }
             }
             else if(btnKart2.Enabled == true)
             {
@@ -205,19 +219,44 @@ namespace UygulamaDenemesi
             }
         }
         Random RandomSayýUretici = new Random();
+        int[] kartRastgeleSayi = new int[10];
         public void LotoKartlarýUretimi(ListBox[] Kart) // Rastgele Sayýlarda KART URETÝMÝ
         {
             // BURADA AMAÇ KARTLARA RASTGELE SAYI URETÝP O RASTGELE SAYIlARI
             // LÝSTBOXA EKLEMEK
-            int[] kartRastgeleSayi = new int[10];
+            // Bu kodda neler mi oldu?
+            //ben 10 tane Rastgele sayi ürettim bu 10 sayiyi karta ekledim
+            // bu 10 sayiyi tüm elemanlarýn saklandýgý diziye ekledim
+            // 
+            // ben button 1 e bastýgýmda bu
+            // 0-1-2-3-4-5-6-7-8-9 k,m,NYP deðerleri
+            // 10 elemani check sistemine göndermeli
+            // ben button 2 e bastýdýgýmda
+            // 10-11-12-13-14-15-16-17-18-19
+            // 10 elemani check sistemine göndermeli
+             // 10 elemanlý Rastgele Sayýlarý tutan dizi
+            int m = 0;
+            int NeredenBaþladýgýnýBul = 0;
+            int NBB = NeredenBaþladýgýnýBul;
             for (int j = 0; j < 5; j++)
-            {
-                for (int i = 0; i < 10; i++)
                 {
-                    kartRastgeleSayi[i] = RandomSayýUretici.Next(10);
-                    Kart[j].Items.Add((i + 1) + "-" + kartRastgeleSayi[i]);
+                    for (int i = 0; i < 10; i++)
+                    {
+                    kartRastgeleSayi[i] = RandomSayýUretici.Next(10); // Rastgele sayiyi ATA
+                    Kart[j].Items.Add((i + 1) + "-" + kartRastgeleSayi[i]); //Listboxa ekle
                 }
-            }
+                for(int k = NBB; k < 50; k++,m++,NBB++) // Dizinin Tüm elemanlarýný Rastgele Doldur         
+                        {
+                        kartRastgeleSayilar[k] = kartRastgeleSayi[m];
+
+                            if (NBB == 9 || NBB == 19 || NBB == 29 || NBB == 39 || NBB == 49)
+                                {
+                                  break;
+                                }
+                        }
+                  m = 0;
+                  NBB++;
+                }
         }
         public void KartlarýTemizle(ListBox[] KartlarýTemizle) // KARTLARIN TEMÝZLENMESÝ
         {
@@ -266,10 +305,22 @@ namespace UygulamaDenemesi
             }
         }
         // KARTLARIN BUTTONLARINA BASILDIÐINDA OLMASINI ÝSTEDÝÐÝMÝZ KODLAR:
+        int Baslangic(int baslangic)
+        {
+            BaslangicDeger = baslangic;
+            return BaslangicDeger;
+        }
+        int Bitis(int bitis)
+        {
+            BitisDeger= bitis;
+            return BitisDeger;
+        }
         private void btnKart1_Click(object sender, EventArgs e)
         {
             btnKart1.Enabled = true;
             btnKartDegis.Visible=false;
+            Baslangic(0);
+            Bitis(10);
             ChooseBtn();
             btnKartVisible(btnKartLar(),false);
             listBoxKartVisible(ListBoxKartlar(),false,0);
@@ -281,6 +332,8 @@ namespace UygulamaDenemesi
             btnKart1.Enabled=false;
             btnKart2.Enabled = true;
             btnKartDegis.Visible = false;
+            Baslangic(10);
+            Bitis(20);
             ChooseBtn();
             btnKartVisible(btnKartLar(),false);
             listBoxKartVisible(ListBoxKartlar(), false, 1);
@@ -290,6 +343,8 @@ namespace UygulamaDenemesi
         {
             btnKart3.Enabled = true;
             btnKartDegis.Visible = false;
+            Baslangic(20);
+            Bitis(30);
             ChooseBtn();
             btnKartVisible(btnKartLar(),false);
             listBoxKartVisible(ListBoxKartlar(), false, 2);
@@ -299,6 +354,8 @@ namespace UygulamaDenemesi
         {
             btnKart4.Enabled = true;
             btnKartDegis.Visible = false;
+            Baslangic(30);
+            Bitis(40);
             ChooseBtn();
             btnKartVisible(btnKartLar(),false);
             listBoxKartVisible(ListBoxKartlar(), false, 3);
@@ -308,6 +365,8 @@ namespace UygulamaDenemesi
         {
             btnKart5.Enabled = true;
             btnKartDegis.Visible = false;
+            Baslangic(40);
+            Bitis(50);
             ChooseBtn();
             btnKartVisible(btnKartLar(),false);
             listBoxKartVisible(ListBoxKartlar(), false, 4);
